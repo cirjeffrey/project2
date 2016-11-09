@@ -14,15 +14,24 @@ using namespace std;
 // TODO: implement the constructor with all your team members
 // constructor with the default value of a minimum players
 ChutesAndLaddersGame::ChutesAndLaddersGame(int nPlayers) : winner("no winner") {
-   // TODO: implement this function properly
-   throw std::logic_error("not implemented yet");
+	
+		Player Cirjeffrey;
+		Player Jerel;
+		Cirjeffrey.setName("Cirjeffrey");
+		Jerel.setName("Jerel");
+
+		queue.enqueue(Cirjeffrey);
+		queue.enqueue(Jerel);
+
 }
 
 // TODO: implement the destructor
 // destructor - dequeue players from the queue
 ChutesAndLaddersGame::~ChutesAndLaddersGame() {
-   // TODO: implement this function properly
-   throw std::logic_error("not implemented yet");
+	
+	while (!queue.empty())
+		queue.dequeue();
+
 }
 
 // TO DO: implement this function properly
@@ -30,8 +39,8 @@ ChutesAndLaddersGame::~ChutesAndLaddersGame() {
 //        (i.e., the list should be the same as in the constructor).
 //        Place all players at the figurative square zero
 void ChutesAndLaddersGame::resetGame() {
-   // TODO: implement this function properly
-   throw std::logic_error("not implemented yet");
+	queue.enqueue(Cirjeffrey);
+	queue.enqueue(Jerel);
 }
 
 // TO DO: implement this function properly
@@ -45,7 +54,17 @@ void ChutesAndLaddersGame::resetGame() {
 //    - If player lands on the winning square 100, game is over
 //    - playGame returns after congratulating and printing the winner's name
 void ChutesAndLaddersGame::playGame() {
-   // TODO: implement this function properly
-   throw std::logic_error("not implemented yet");
-   
+
+	bool winnerfound = false;
+	while (winnerfound = false)
+	{
+		Player *p = new Player("temp");
+		*p = queue.front();
+		int value = p->rollDieAndMove();
+		int newValue = gameBoard.checkChutesLadders(value);
+		if (newValue == 100)
+			winnerfound = true;
+	}
+	// TODO: implement this function properly	
+
 }
