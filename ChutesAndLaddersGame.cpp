@@ -20,6 +20,7 @@ ChutesAndLaddersGame::ChutesAndLaddersGame(int nPlayers) : winner("no winner") {
 		Cirjeffrey.setName("Cirjeffrey");
 		Jerel.setName("Jerel");
 
+
 		queue.enqueue(Cirjeffrey);
 		queue.enqueue(Jerel);
 
@@ -39,8 +40,11 @@ ChutesAndLaddersGame::~ChutesAndLaddersGame() {
 //        (i.e., the list should be the same as in the constructor).
 //        Place all players at the figurative square zero
 void ChutesAndLaddersGame::resetGame() {
+
 	queue.enqueue(Cirjeffrey);
+	Cirjeffrey.setPosition(0);
 	queue.enqueue(Jerel);
+	Jerel.setPosition(0);
 }
 
 // TO DO: implement this function properly
@@ -56,15 +60,27 @@ void ChutesAndLaddersGame::resetGame() {
 void ChutesAndLaddersGame::playGame() {
 
 	bool winnerfound = false;
-	while (winnerfound = false)
-	{
-		Player *p = new Player("temp");
-		*p = queue.front();
+	Player *p = new Player("temp");
+	*p = queue.front();
+
+
+	while (winnerfound == false){
 		int value = p->rollDieAndMove();
 		int newValue = gameBoard.checkChutesLadders(value);
-		if (newValue == 100)
-			winnerfound = true;
-	}
-	// TODO: implement this function properly	
+		queue.dequeue();
 
+		if (newValue == WINNING_POSITION){
+			winner = p->getName();
+			cout << "Winner is " << winner << endl;
+			winnerfound = true;
+		}
+		else{	
+			queue.enqueue(p->getName());
+			
+		//	cout <<"newValue= " <<  newValue << endl;
+		//	winner = p->getName();
+		}
+	} 
+// TODO: implement this function properly	
+// function not changing players;
 }
